@@ -40,7 +40,7 @@ public class LocalLockTest {
         CountDownLatch countDownLatch = new CountDownLatch(10);
         for (int i = 0; i < 10; i++) {
             threadPoolTaskExecutor.execute(() -> {
-                Lock lock = lockRegistry.obtain(LockConstants.R_PAN_LOCK);
+                Lock lock = lockRegistry.obtain(LockConstants.ICCD_STORAGE_LOCK);
                 boolean lockResult = false;
                 try {
                     lockResult = lock.tryLock(60L, TimeUnit.SECONDS);
