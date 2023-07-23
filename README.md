@@ -1,6 +1,6 @@
 使用Jmeter对访问量较大的查询分享接口进行压测，通过在10s内创建1000个线程访问该接口，压测结果表明平均响应时间在65毫秒内，吞吐量可以达到7000。同时对下载1G文件测试，单用户可在6秒内下载完成，上传文件可在7秒内完成，满足实验室的日常使用
 
-![8abe5bffca30755412f164567a9c4ee](C:\Users\41036\AppData\Local\Temp\WeChat Files\8abe5bffca30755412f164567a9c4ee.png)
+![8abe5bffca30755412f164567a9c4ee](https://github.com/demo410/iccd-storage/blob/main/img.png)
 
 **iccd-storage-server docs**
 
