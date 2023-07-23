@@ -1,0 +1,106 @@
+
+spring:
+    redis:
+        database: 1
+        host: 127.0.0.1
+    application:
+        name: storage-server
+    output:
+        ansi:
+            enabled: always
+    mvc:
+        servlet:
+            load-on-startup: 1
+    servlet:
+        multipart:
+            max-file-size: 3072MB
+            max-request-size: 3072MB
+    datasource:
+        username: root
+        password: shike
+        url: jdbc:mysql://127.0.0.1:3306/iccd_storage?characterEncoding=utf8&serverTimeZone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+        driver-class-name: com.mysql.jdbc.Driver
+    cloud:
+        stream:
+            rocketmq:
+                binder:
+                    name-server: 127.0.0.1:9876
+            bindings:
+                testInput:
+                    destination: testTopic
+                    group: testTopicGroup1
+                testOutput:
+                    destination: testTopic
+                errorLogInput:
+                    destination: errorLogTopic
+                    group: errorLogGroup
+                deleteFileInput:
+                    destination: deleteFileTopic
+                    group: deleteFileGroup
+                fileRestoreInput:
+                    destination: fileRestoreTopic
+                    group: fileRestoreGroup
+                physicalDeleteFileInput:
+                    destination: physicalDeleteFileTopic
+                    group: physicalDeleteFileGroup
+                userSearchInput:
+                    destination: userSearchTopic
+                    group: userSearchGroup
+                errorLogOutput:
+                    destination: errorLogTopic
+                deleteFileOutput:
+                    destination: deleteFileTopic
+                fileRestoreOutput:
+                    destination: fileRestoreTopic
+                physicalDeleteFileOutput:
+                    destination: physicalDeleteFileTopic
+                userSearchOutput:
+                    destination: userSearchTopic
+
+
+mybatis-plus:
+    mapper-locations: classpath:mappers/**/*.xml
+
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+                exclude: env,beans
+
+swagger2:
+    show: true
+    group-name: ${spring.application.name}
+    base-package: com.iccd.storage
+    title: iccd-storage-server docs
+    description: iccd-storage-server docs
+    terms-of-service-url: http://127.0.0.1:${server.port}
+    version: 1.0
+
+
+
+logging:
+    level:
+        root: INFO
+    file:
+        name: ${user.home}/logs/${spring.application.name}/${spring.application.name}.log
+
+
+server:
+    port: 8082
+
+com:
+    iccd:
+        storage:
+            server:
+                share-prefix: http://127.0.0.1：5173
+            bloom:
+                filter:
+                    local:
+                        items:
+                            - name: SHARE_SIMPLE_DETAIL
+                              funnel-type-name: LONG
+                              expected-insertions: 10000000
+                              fpp: 0.01
+
