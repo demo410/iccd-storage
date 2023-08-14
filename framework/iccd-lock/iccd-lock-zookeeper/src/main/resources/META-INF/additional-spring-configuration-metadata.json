@@ -10,7 +10,7 @@
             "name": "com.iccd.storage.lock.zookeeper.root-path",
             "type": "java.lang.String",
             "description": "ZooKeeper分布式锁根路径",
-            "defaultValue": "/r-pan-lock"
+            "defaultValue": "/storage-lock"
         }
     ]
 }
